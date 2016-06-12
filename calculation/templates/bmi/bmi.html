@@ -1,0 +1,11 @@
+<form action="." method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Calculer" />
+</form>
+
+{% if result %}
+<div>
+Your BMI value: {{ result|floatformat:"1" }}
+</div>
+{% endif %}

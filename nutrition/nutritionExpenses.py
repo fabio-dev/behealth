@@ -48,14 +48,25 @@ def calculateBMI(mass, size):
 
 def bmiFactor(bmi):
     '''
-    il faut diminuer de 1% la DEJ calculée par point d’IMC au-dessus de 22 
+    il faut diminuer de 1% la DEJ calculée par point d’IMC au-dessus de 22
     et l’augmenter symétriquement au-dessous de 22
     '''
     return 1 + (22-bmi)/100.
 
 def calculateDEE(sex, mass, size, age, activityLevel, weeklySports):
+    '''
+    calculates Daily Energy Expenditure in kcal
+    '''
     bmr = calculateBMR(sex, mass, size, age)
     actFactor = activityFactor(sex, activityLevel, weeklySports)
     bmi = calculateBMI(mass, size)
     bmiFactor = bmiFactor(bmi)
     return bmr * actFactor * bmiFactor
+
+def proteinNeed(sex, mass, size, age, activityLevel, weeklySports,
+                pregnant=False, breastfeeding=False):
+    '''
+    calculates the appropriate amount of protein one needs daily in grams
+    '''
+    prot = 0.6*mass
+    return prot
